@@ -1,10 +1,11 @@
-<% @LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
-<%
-Option Explicit
 
-Dim rec
+<%
+
+Dim con
 Dim user
 Dim password
+Dim query
+Dim rs
 
 
 user =Request.form("username")
@@ -14,11 +15,20 @@ Response.write(user)
 Response.write("<br>") 
 
 Response.write(password) 
-Set Con = Server.CreateObject("ADODB.Connection")
+Response.write("<br>") 
+Set con = Server.createObject("ADODB.Connection")
 
-Con.ConnectionString= "Provider=SQLOLEDB; Data Source=DESKTOP-94UDDNK\gmora(55);Database=cuentaAhorros;User Id =sa; Password= "
-Con.open
+con.ConnectionString= "Provider=SQLNCLI11;Server=DESKTOP-94UDDNK;Database=cuentaAhorros;uid=sa;pwd=4321;"
 
+con.open    
+query="select * from Usuarios where Username = '"&user&"' AND Pass = '"&password&"'"
+set rs=con.execute(query)
 
+if rs.BOF and rs.EOF then
+		Response.Redirect "login.asp"
+else
+    Response.Redirect "inicio.asp"
+end if
+Response.Write("El Usuario es: ")
+Response.Write(rs.Fields(1))
 %>
-Exito
