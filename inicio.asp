@@ -15,12 +15,18 @@
 
   <form method="POST" >
   <table border="1" cellspacing="1" bordercolor="#111111" id="AutoNumber1" height="100">
-    
+   
     <tr>
       <td width="210" colspan="2" height="22">  
-        <button class="button" onClick="window.open('http://localhost/PaginaWeb/agregarBeneficiarios.asp')"> Agregar Beneficiarios</button>
+          <center>
+        <button class="button" onClick="window.open('http://localhost/CuentaAhorros/agregarBeneficiarios.asp')"> Agregar Beneficiarios</button>
+        <button class="button" onClick="window.open('http://localhost/CuentaAhorros/eliminarBeneficiarios.asp')"> Eliminar Beneficiarios</button>
+        <button class="button" onClick="window.open('http://localhost/CuentaAhorros/editarBeneficiarios.asp')"> Editar Beneficiarios</button>
+          </center>
+
       </td>
     </tr>
+    
   </table>
   </form>
   </center>

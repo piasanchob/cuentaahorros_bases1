@@ -29,6 +29,6 @@ if rs.BOF and rs.EOF then
 else
     Response.Redirect "inicio.asp"
 end if
-Response.Write("El Usuario es: ")
-Response.Write(rs.Fields(1))
+
 %>
+exito
