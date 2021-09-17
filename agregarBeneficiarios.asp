@@ -51,7 +51,7 @@
     
     <tr>
       <td width="210" colspan="2" height="30">
-      <p align="center"><font face="Verdana" color="#FFFFFF"><input type="submit" value="Editar" name="edit"><font size="2">&nbsp;</font></td>
+      <p align="center"><font face="Verdana" color="#FFFFFF"><input type="submit" value="Agregar" name="edit"><font size="2">&nbsp;</font></td>
     </tr>
   </table>
   </form>
