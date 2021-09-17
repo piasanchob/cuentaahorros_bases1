@@ -18,7 +18,7 @@ BEGIN
 		Nombre = T.Item.value('@Nombre', 'varchar(64)')
 	FROM @datos.nodes('Datos/Tipo_Doc/TipoDocuIdentidad') as T(Item)
 
-	--DELETE FROM dbo.TipoDocsIdentidad
+	
 	SELECT * FROM dbo.TipoDocsIdentidad
 	--insercion tipo monedas
 
@@ -29,7 +29,7 @@ BEGIN
 	FROM @datos.nodes('Datos/Tipo_Moneda/TipoMoneda') as T(Item)
 
 	SELECT * FROM dbo.TipoMonedas
-	--DELETE FROM dbo.TipoMonedas
+	
 	--insercion tipo parentescos
 
 	INSERT INTO dbo.Parentescos(Id, Nombre)
@@ -38,7 +38,7 @@ BEGIN
 		Nombre = T.Item.value('@Nombre', 'varchar(64)')
 	FROM @datos.nodes('Datos/Parentezcos/Parentezco') as T(Item)
 
-	--DELETE FROM dbo.Parentescos
+	
 	SELECT * FROM dbo.Parentescos
 	--insercion tipo cuentas de ahorro
 
@@ -59,7 +59,7 @@ BEGIN
 
 	FROM @datos.nodes('Datos/Tipo_Cuenta_Ahorros/TipoCuentaAhorro') as T(Item)
 
-	--DELETE FROM dbo.TiposCuentaAhorros
+	
 	SELECT * FROM dbo.TiposCuentaAhorros
 	--insercion Personas
 
@@ -74,7 +74,7 @@ BEGIN
 		IdTipoDoc = T.Item.value('@TipoDocuIdentidad', 'int')
 	FROM @datos.nodes('Datos/Personas/Persona') as T(Item)
 
-	--DELETE FROM dbo.Personas
+	
 	SELECT * FROM dbo.Personas
 	--insercion cuentas
 
@@ -88,7 +88,6 @@ BEGIN
 	
 	FROM @datos.nodes('Datos/Cuentas/Cuenta') as T(Item)
 
-	--DELETE FROM dbo.CuentaAhorros
 	SELECT * FROM dbo.CuentaAhorros
 	--insercion beneficiarios
 
@@ -102,7 +101,7 @@ BEGIN
 	
 	FROM @datos.nodes('Datos/Beneficiarios/Beneficiario') as T(Item)
 
-	--DELETE FROM dbo.Beneficiarios
+	
 	SELECT * FROM dbo.Beneficiarios
 	--insertar Usuarios
 
@@ -116,7 +115,7 @@ BEGIN
 	
 	FROM @datos.nodes('Datos/Usuarios/Usuario') as T(Item)
 
-	--DELETE FROM dbo.Usuarios
+	
 	SELECT * FROM dbo.Usuarios
 	-- insercion usuarios puede ver
 
@@ -127,7 +126,7 @@ BEGIN
 	
 	FROM @datos.nodes('Datos/Usuarios_Ver/UsuarioPuedeVer') as T(Item)
 
-	--DELETE FROM dbo.UsuarioPuedeVer
+	
 	SELECT * FROM dbo.UsuarioPuedeVer
 
 END;
