@@ -5,7 +5,7 @@
 <body bgcolor="#003366">
 <center>
 
-  <form method="POST" action="connection.asp">
+  <form method="POST" action="editar.asp">
   <p style="color:white" > <font face="Verdana" size="5"> Editar Beneficiarios <p>
   <table border="1" cellspacing="1" bordercolor="#111111" id="AutoNumber1" height="82">
     <tr>
