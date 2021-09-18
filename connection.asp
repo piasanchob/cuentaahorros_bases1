@@ -1,4 +1,3 @@
-
 <%
 
 Dim con
@@ -25,10 +24,9 @@ query="select * from Usuarios where Username = '"&user&"' AND Pass = '"&password
 set rs=con.execute(query)
 
 if rs.BOF and rs.EOF then
-		Response.Redirect "login.asp"
+	Response.Redirect "login.asp"
 else
     Response.Redirect "inicio.asp"
 end if
-Response.Write("El Usuario es: ")
-Response.Write(rs.Fields(1))
+
 %>
