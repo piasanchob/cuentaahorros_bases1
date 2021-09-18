@@ -5,7 +5,7 @@
 <body bgcolor="#003366">
 <center>
 
-  <form method="POST" action="editar.asp">
+  <form method="POST" action="agregar.asp">
   <p style="color:white" > <font face="Verdana" size="5"> Agregar Beneficiarios <p>
   <table border="1" cellspacing="1" bordercolor="#111111" id="AutoNumber1" height="82">
     <tr>
