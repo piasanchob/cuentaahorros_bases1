@@ -20,17 +20,17 @@
     <tr>
       <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Perentezco</font></td>
       <td width="148" height="22">
-      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="paren" size="20"></font></td>
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="parent" size="20"></font></td>
     </tr>
     <tr>
         <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Porcentaje de Beneficio</font></td>
       <td width="148" height="22">
-      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="beneficiario" size="20"></font></td>
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="beneficio" size="20"></font></td>
     </tr>
     <tr>
         <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Fecha de Nacimiento</font></td>
       <td width="148" height="22">
-      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="fecha" size="20"></font></td>
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="fechaNa" size="20"></font></td>
     </tr>
     <tr>
         <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Identificacion</font></td>
@@ -40,12 +40,22 @@
     <tr>
         <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Telefono 1</font></td>
       <td width="148" height="22">
-      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="tel1" size="20"></font></td>
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="Tel1" size="20"></font></td>
     </tr>
     <tr>
         <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Telefono 2</font></td>
       <td width="148" height="22">
-      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="tel2" size="20"></font></td>
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="Tel2" size="20"></font></td>
+    </tr>
+    <tr>
+        <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Email</font></td>
+      <td width="148" height="22">
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="mail" size="20"></font></td>
+    </tr>
+    <tr>
+        <td height="22"><font color="#FFFFFF" face="Verdana" size="2">Numero de Cuenta</font></td>
+      <td width="148" height="22">
+      <p align="center"><font color="#FFFFFF" face="Verdana"><input type="text" name="numCuenta" size="20"></font></td>
     </tr>
     
     
