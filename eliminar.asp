@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 
 <%
 Dim cedula
+=======
+<%
+Dim identificacion
+>>>>>>> master
 Dim user
 Dim password
 Dim query
 Dim rs
+<<<<<<< HEAD
 Dim porcentaje
 Dim cuenta
 
@@ -14,12 +20,20 @@ porcentaje =Request.form("porcentaje")
 
 Response.write(cedula)
 Response.write("<br>")
+=======
+
+
+ident =Request.form("id")
+
+Response.write(identificacion)
+>>>>>>> master
 
 Set con = Server.createObject("ADODB.Connection")
 
 con.ConnectionString= "Provider=SQLNCLI11;Server=DESKTOP-94UDDNK;Database=cuentaAhorros;uid=sa;pwd=4321;"
 
 con.open    
+<<<<<<< HEAD
 
 DIM cmd
 
@@ -56,6 +70,17 @@ else
     Response.Redirect("DatosNoEncontrados.asp")
 
 
+=======
+query="select * from Beneficiarios where Cedula='"&ident&"'"
+
+set rs=con.execute(query)
+
+
+if not rs.EOF  then
+	Response.Write("encontro")
+else
+    Response.Redirect( "error.asp")
+>>>>>>> master
 end if
 
 %>
