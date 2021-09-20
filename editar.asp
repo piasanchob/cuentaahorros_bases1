@@ -1,30 +1,72 @@
 <%
-Dim identificacion
-Dim user
-Dim password
-Dim query
 Dim rs
+Dim porcentaje
+Dim parentesco
+Dim ced
+Dim cedB
+Dim nom
 
+ced=Request.form("ced")
+cedB=Request.form("cedB")
+nombre =Request.form("nom")
+porcentaje =Request.form("porcentaje")
+parentesco =Request.form("paren")
 
-ident =Request.form("id")
-
-Response.write(identificacion)
+Response.write(nombre)
+Response.write("<br>")
 
 Set con = Server.createObject("ADODB.Connection")
 
 con.ConnectionString= "Provider=SQLNCLI11;Server=DESKTOP-94UDDNK;Database=cuentaAhorros;uid=sa;pwd=4321;"
 
 con.open    
-query="select * from Beneficiarios where Cedula='"&ident&"'"
+DIM cmd
+SET cmd = Server.CreateObject("ADODB.Command")
+SET cmd.ActiveConnection = con
 
-set rs=con.execute(query)
+
+'Prepare the stored procedure
+cmd.CommandText = "ValidarEdit"
+cmd.CommandType = 4  'adCmdStoredProc
+
+cmd.Parameters("@Cedula") = ced
+cmd.Parameters("@CedulaB") = cedB
+
+'Execute the stored procedure
+'This returns recordset but you dont need it
+
+cmd.Execute()
+rs = cmd.Parameters(0)
 
 
-if not rs.EOF  then
-	Response.Write("encontro")
+if rs="1" then
+    DIM upd
+    SET upd = Server.CreateObject("ADODB.Command")
+    SET upd.ActiveConnection = con
+    upd.CommandText = "ActualizarDatos"
+    upd.CommandType = 4  'adCmdStoredProc
+
+    upd.Parameters("@Cedula") = ced
+    upd.Parameters("@CedulaB") = cedB
+    upd.Parameters("@Nombre") = nombre
+    upd.Parameters("@Porcentaje") = Porcentaje
+    upd.Parameters("@Parentesco") = parentesco
+    upd.Execute()
+    rs = cmd.Parameters(0)
+    IF rs="1" then
+        Response.Redirect("mensajeEditado.asp")
+    else
+        Response.Redirect("porcentaje.asp")
+    end if
+
+
 else
-    Response.Redirect( "error.asp")
+    Response.Redirect("DatosNoEncontrados.asp")
+
 end if
+
+
+
 
 %>
 

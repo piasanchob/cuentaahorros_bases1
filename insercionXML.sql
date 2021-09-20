@@ -1,5 +1,5 @@
 use cuentaAhorros
-
+GO
 CREATE PROCEDURE InsercionXML
 AS
 BEGIN
