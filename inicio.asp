@@ -6,9 +6,6 @@
 <body bgcolor="#003366">
 <center>
 <%
-
-
-
 %>
   <p style="color:white" > <font face="Verdana" size="5"> Menu <p>
 

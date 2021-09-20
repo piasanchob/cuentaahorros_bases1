@@ -10,12 +10,6 @@ Dim ra
 
 user =Request.form("username")
 password =Request.form("pass")
-
-Response.write(user)
-Response.write("<br>") 
-
-Response.write(password) 
-Response.write("<br>") 
 Set con = Server.createObject("ADODB.Connection")
 
 
@@ -42,7 +36,7 @@ cmd.Parameters("@Contra") = password
 
 cmd.Execute()
 rs = cmd.Parameters(0)
-Response.write(rs)
+
 
 if rs="1" then
     Response.Redirect("inicio.asp")
@@ -52,14 +46,6 @@ else
 
 end if
 
-' ... more params goes (here ...
-
-
-'query="select * from Usuarios where Username = '"&user&"' AND Pass = '"&password&"'"
-
-'query="EXEC validarUsuario @Usuario = '"&user&"',@Contraseña = '"&password&"'"
-
-'set rs=con.execute(query)
 
 
 

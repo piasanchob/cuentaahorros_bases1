@@ -1,29 +1,61 @@
+
 <%
-Dim identificacion
+Dim cedula
 Dim user
 Dim password
 Dim query
 Dim rs
+Dim porcentaje
+Dim cuenta
 
+cedula =Request.form("ced")
+cuenta =Request.form("num") 
+porcentaje =Request.form("porcentaje") 
 
-ident =Request.form("id")
-
-Response.write(identificacion)
+Response.write(cedula)
+Response.write("<br>")
 
 Set con = Server.createObject("ADODB.Connection")
 
 con.ConnectionString= "Provider=SQLNCLI11;Server=DESKTOP-94UDDNK;Database=cuentaAhorros;uid=sa;pwd=4321;"
 
 con.open    
-query="select * from Beneficiarios where Cedula='"&ident&"'"
 
-set rs=con.execute(query)
+DIM cmd
+
+SET cmd = Server.CreateObject("ADODB.Command")
+SET cmd.ActiveConnection = con
 
 
-if not rs.EOF  then
-	Response.Write("encontro")
+
+
+'Prepare the stored procedure
+cmd.CommandText = "ValidarElim"
+cmd.CommandType = 4  'adCmdStoredProc
+cmd.Parameters("@cedula") = cedula
+cmd.Parameters("@porcentaje") = porcentaje
+cmd.Parameters("@numCuenta") = cuenta
+
+
+'Execute the stored procedure
+'This returns recordset but you dont need it
+
+cmd.Execute()
+rs = cmd.Parameters(0)
+
+if rs="1" then
+    Dim upd
+    SET upd = Server.CreateObject("ADODB.Command")
+    SET upd.ActiveConnection = con
+    upd.CommandText = "Eliminar"
+    upd.CommandType = 4  'adCmdStoredProc
+    upd.Parameters("@Cedula") = cedula
+    upd.Execute()
+    Response.Redirect("mensajeEliminado.asp")
 else
-    Response.Redirect( "error.asp")
+    Response.Redirect("DatosNoEncontrados.asp")
+
+
 end if
 
 %>
