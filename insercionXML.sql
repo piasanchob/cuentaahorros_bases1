@@ -7,7 +7,7 @@ BEGIN
 
 	DECLARE @datos XML
 	SELECT @datos = CAST(xmlfile AS xml)
-	FROM OPENROWSET(BULK 'C:\Users\gmora\OneDrive\Desktop\2 SEMESTRE 2021\Bases de Datos\Tarea Programada\Github\cuentaahorros_bases1\DatosTarea.xml', SINGLE_BLOB) AS T(xmlfile)
+	FROM OPENROWSET(BULK 'C:\Users\user\Documents\TEC\BASES1 FRANCO\cuentaahorros_bases1\XMLFile.xml', SINGLE_BLOB) AS T(xmlfile)
 
 
 	--insercion tipo docs identidad
@@ -131,4 +131,6 @@ BEGIN
 
 END;
 
-EXEC InsercionXML
+EXEC InsercionXML;
+
+
