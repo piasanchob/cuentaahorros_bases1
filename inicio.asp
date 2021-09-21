@@ -19,6 +19,7 @@
         <button class="button" onClick="window.open('http://localhost/CuentaAhorros/agregarBeneficiarios.asp')"> Agregar Beneficiarios</button>
         <button class="button" onClick="window.open('http://localhost/CuentaAhorros/eliminarBeneficiarios.asp')"> Eliminar Beneficiarios</button>
         <button class="button" onClick="window.open('http://localhost/CuentaAhorros/editarBeneficiarios.asp')"> Editar Beneficiarios</button>
+        <button class="button" onClick="window.open('http://localhost/CuentaAhorros/mostrarCuentas.asp')"> Mostrar Cuentas</button>
           </center>
 
       </td>

@@ -43,22 +43,52 @@ if rs="1" then
     DIM upd
     SET upd = Server.CreateObject("ADODB.Command")
     SET upd.ActiveConnection = con
-    upd.CommandText = "ActualizarDatos"
+
+    upd.CommandText = "validarPorcentaje"
     upd.CommandType = 4  'adCmdStoredProc
 
+    upd.Parameters("@Porcentaje2") = porcentaje
     upd.Parameters("@Cedula") = ced
-    upd.Parameters("@CedulaB") = cedB
-    upd.Parameters("@Nombre") = nombre
-    upd.Parameters("@Porcentaje") = Porcentaje
-    upd.Parameters("@Parentesco") = parentesco
     upd.Execute()
-    rs = cmd.Parameters(0)
-    IF rs="1" then
-        Response.Redirect("mensajeEditado.asp")
-    else
-        Response.Redirect("porcentaje.asp")
-    end if
+    rs = upd.Parameters(0)
 
+    if rs="1" then
+
+        
+        SET upd = Server.CreateObject("ADODB.Command")
+        SET upd.ActiveConnection = con
+        upd.CommandText = "ActualizarDatos"
+        upd.CommandType = 4  'adCmdStoredProc
+
+        upd.Parameters("@Cedula") = ced
+        upd.Parameters("@CedulaB") = cedB
+        upd.Parameters("@Nombre") = nombre
+        upd.Parameters("@Porcentaje") = Porcentaje
+        upd.Parameters("@Parentesco") = parentesco
+        upd.Execute()
+
+        Response.Redirect("porcentajeMenor.asp")
+
+    elseif rs="0" then
+        Response.Redirect("porcentajeMayor.asp")
+
+
+    else
+        
+        SET upd = Server.CreateObject("ADODB.Command")
+        SET upd.ActiveConnection = con
+        upd.CommandText = "ActualizarDatos"
+        upd.CommandType = 4  'adCmdStoredProc
+
+        upd.Parameters("@Cedula") = ced
+        upd.Parameters("@CedulaB") = cedB
+        upd.Parameters("@Nombre") = nombre
+        upd.Parameters("@Porcentaje") = Porcentaje
+        upd.Parameters("@Parentesco") = parentesco
+        upd.Execute()
+
+        Response.Redirect("mensajeEditado.asp")
+    end if
 
 else
     Response.Redirect("DatosNoEncontrados.asp")

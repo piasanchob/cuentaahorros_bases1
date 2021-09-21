@@ -1,24 +1,13 @@
 <%
 Dim identificacion
-Dim nombre
 Dim parentesco
-Dim email
-Dim tel1
-Dim tel2
 Dim porcentaje 
 Dim num
-Dim fecha
-Dim query
 Dim rs
 
-nombre =Request.form("nom")
 parentesco =Request.form("parent")
 porcentaje =Request.form("beneficio")
-fecha =Request.form("fechaNa")
 identificacion =Request.form("id")
-tel1 =Request.form("Tel1")
-tel2 =Request.form("Tel2")
-email =Request.form("mail")
 num = Request.form("numCuenta")
 
 
@@ -29,27 +18,159 @@ Set con = Server.createObject("ADODB.Connection")
 con.ConnectionString= "Provider=SQLNCLI11;Server=DESKTOP-94UDDNK;Database=cuentaAhorros;uid=sa;pwd=4321;"
 
 con.open    
+DIM upd
+SET upd = Server.CreateObject("ADODB.Command")
+SET upd.ActiveConnection = con
+
+upd.CommandText = "ValidarBeneficiarios"
+upd.CommandType = 4  'adCmdStoredProc
+
+upd.Parameters("@Cedula") = identificacion
+upd.Execute()
 
 
-DIM cmd
-SET cmd = Server.CreateObject("ADODB.Command")
-SET cmd.ActiveConnection = con
+rs = upd.Parameters(0)
 
-cmd.CommandText = "agregarBeneficiario"
-cmd.CommandType = 4  'adCmdStoredProc
+if rs="1" then
+    SET exc = Server.CreateObject("ADODB.Command")
+    SET exc.ActiveConnection = con
 
-cmd.Parameters("@Nombre") = nombre
-cmd.Parameters("@Parentezco") = parentesco
-cmd.Parameters("@Porcentaje") = porcentaje
-cmd.Parameters("@Fecha") = fecha
-cmd.Parameters("@ident") = identificacion
-cmd.Parameters("@tel1") = tel1
-cmd.Parameters("@tel2") = tel2
-cmd.Parameters("@Email") = email
-cmd.Parameters("@Cuenta") = num
+    exc.CommandText = "validarIdenPersona"
+    exc.CommandType = 4  'adCmdStoredProc
 
-cmd.Execute()
-rs = cmd.Parameters(0)
+    exc.Parameters("@ident") = identificacion
 
+    exc.Execute()
+    rs = exc.Parameters(0)
+    if rs="1" then
+        SET cmd = Server.CreateObject("ADODB.Command")
+        SET cmd.ActiveConnection = con
+
+        cmd.CommandText = "validarPorcentaje2"
+        cmd.CommandType = 4  'adCmdStoredProc
+
+        cmd.Parameters("@Porcentaje") = porcentaje
+        cmd.Parameters("@Cedula") = identificacion
+        cmd.Execute()
+        rs = cmd.Parameters(0)
+
+        if rs="1" then
+        
+            SET cmd = Server.CreateObject("ADODB.Command")
+            SET cmd.ActiveConnection = con
+
+            cmd.CommandText = "agregarBeneficiario"
+            cmd.CommandType = 4  'adCmdStoredProc
+
+            cmd.Parameters("@Parentezco") = parentesco
+            cmd.Parameters("@Porcentaje") = porcentaje
+            cmd.Parameters("@ident") = identificacion
+            cmd.Parameters("@Cuenta") = num
+            cmd.Execute()
+
+
+            Response.Redirect"porcentaje.asp"
+
+
+        elseif rs="0" then
+            Response.Redirect"porcentajeMayor.asp"
+
+        else
+            SET cmd = Server.CreateObject("ADODB.Command")
+            SET cmd.ActiveConnection = con
+
+            cmd.CommandText = "agregarBeneficiario"
+            cmd.CommandType = 4  'adCmdStoredProc
+
+            cmd.Parameters("@Parentezco") = parentesco
+            cmd.Parameters("@Porcentaje") = porcentaje
+            cmd.Parameters("@ident") = identificacion
+            cmd.Parameters("@Cuenta") = num
+            cmd.Execute()
+            Response.Redirect"mensajeBeneficiarios.asp"
+        end if
+
+
+
+    else
+
+        SET cmd = Server.CreateObject("ADODB.Command")
+        SET cmd.ActiveConnection = con
+
+        cmd.CommandText = "validarPorcentaje"
+        cmd.CommandType = 4  'adCmdStoredProc
+
+        cmd.Parameters("@Porcentaje2") = porcentaje
+        cmd.Parameters("@Cedula") = identificacion
+        cmd.Execute()
+        rs = cmd.Parameters(0)
+
+         if rs="1" then
+        
+            SET cmd = Server.CreateObject("ADODB.Command")
+            SET cmd.ActiveConnection = con
+
+            cmd.CommandText = "agregarBeneficiario"
+            cmd.CommandType = 4  'adCmdStoredProc
+
+            cmd.Parameters("@Parentezco") = parentesco
+            cmd.Parameters("@Porcentaje") = porcentaje
+            cmd.Parameters("@ident") = identificacion
+            cmd.Parameters("@Cuenta") = num
+            cmd.Execute()
+
+
+            Response.Redirect"porcentaje.asp"
+            SET cmd = Server.CreateObject("ADODB.Command")
+            SET cmd.ActiveConnection = con
+
+            cmd.CommandText = "agregarBeneficiario"
+            cmd.CommandType = 4  'adCmdStoredProc
+
+            cmd.Parameters("@Parentezco") = parentesco
+            cmd.Parameters("@Porcentaje") = porcentaje
+            cmd.Parameters("@ident") = identificacion
+            cmd.Parameters("@Cuenta") = num
+            cmd.Execute()
+            Response.Redirect"agregarPersona.asp"
+
+
+         elseif rs="0" then
+            Response.Redirect"porcentajeMayor.asp"
+
+         else
+            SET cmd = Server.CreateObject("ADODB.Command")
+            SET cmd.ActiveConnection = con
+
+            cmd.CommandText = "agregarBeneficiario"
+            cmd.CommandType = 4  'adCmdStoredProc
+
+            cmd.Parameters("@Parentezco") = parentesco
+            cmd.Parameters("@Porcentaje") = porcentaje
+            cmd.Parameters("@ident") = identificacion
+            cmd.Parameters("@Cuenta") = num
+            cmd.Execute()
+            Response.Redirect"mensajeBeneficiarios.asp"
+            SET cmd = Server.CreateObject("ADODB.Command")
+            SET cmd.ActiveConnection = con
+
+            cmd.CommandText = "agregarBeneficiario"
+            cmd.CommandType = 4  'adCmdStoredProc
+
+            cmd.Parameters("@Parentezco") = parentesco
+            cmd.Parameters("@Porcentaje") = porcentaje
+            cmd.Parameters("@ident") = identificacion
+            cmd.Parameters("@Cuenta") = num
+            cmd.Execute()
+            Response.Redirect"agregarPersona.asp"
+        end if
+        
+    end if
+
+
+else    
+    Response.Redirect"mensajeBeneficiariosError.asp"
+end if
 
 %>
+ 

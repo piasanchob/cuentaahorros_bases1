@@ -14,8 +14,6 @@ Set con = Server.createObject("ADODB.Connection")
 
 
 
-
-
 con.ConnectionString= "Provider=SQLNCLI11;Server=DESKTOP-94UDDNK;Database=cuentaAhorros;uid=sa;pwd=4321;"
 
 con.open    
@@ -38,11 +36,7 @@ cmd.Parameters("@Contra") = password
 
 cmd.Execute()
 rs = cmd.Parameters(0)
-<<<<<<< HEAD
 
-=======
-Response.write(rs)
->>>>>>> master
 
 if rs="1" then
     Response.Redirect("inicio.asp")
@@ -52,17 +46,6 @@ else
 
 end if
 
-<<<<<<< HEAD
-=======
-' ... more params goes (here ...
-
-
-'query="select * from Usuarios where Username = '"&user&"' AND Pass = '"&password&"'"
-
-'query="EXEC validarUsuario @Usuario = '"&user&"',@Contraseña = '"&password&"'"
-
-'set rs=con.execute(query)
->>>>>>> master
 
 
 

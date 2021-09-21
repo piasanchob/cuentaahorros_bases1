@@ -5,11 +5,7 @@
 <body bgcolor="#003366">
 <center>
 
-<<<<<<< HEAD
   <form method="POST" action="eliminar.asp">
-=======
-  <form method="POST" action="connection.asp">
->>>>>>> master
   <p style="color:white" > <font face="Verdana" size="5"> Eliminar Beneficiario <p>
   <table border="1" cellspacing="1" bordercolor="#111111" id="AutoNumber1" height="82">
     <tr>
